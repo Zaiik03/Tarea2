@@ -8,18 +8,15 @@ public class Nota {
         nota_reunion = new ArrayList<String>();
     }
 
-    public String getNota(){
+    public void getNota(){
+        int i = 1;
         for(String nota : nota_reunion){
-            System.out.println(nota);
+            System.out.println("Nota " + i + ": " + nota);
+            i++;
         }
-        return "";
     }
 
     public void addNota(String nota){
         nota_reunion.add(nota);
-    }
-
-    private int getTamaño(){
-        return nota_reunion.size();
     }
 }

@@ -3,7 +3,6 @@ package org.example;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
-import java.util.Date;
 import java.time.LocalDateTime;
 
 
@@ -12,13 +11,25 @@ public class Main {
         ReunionPresencial reunion = new ReunionPresencial(LocalDate.of(2024, 5, 7), Instant.now(), Duration.ofHours(1).plusMinutes(30), "A411");
         reunion.iniciar(LocalDateTime.of(2024, 5, 7, 10, 0));
 
+        // Departamentos
+        Departamento depaComunista = new Departamento("anti-furros");
 
-        System.out.println("hola");
-        System.out.println("hola");
+        // Empleados
+        for (int i = 0; i < 10; i++){
+            Empleado e = new Empleado("A-" + (i + 1), "oliver", "peñailillo", "oliver@hola.cl");
+            depaComunista.addEmpleados(e);
+        }
 
-        reunion.finalizar(LocalDateTime.of(2024, 5, 7, 11, 0));
+        Empleado hola = new Empleado("A-" + 3, "matias", "peneilillo", "oliver@hola.cl");
+        depaComunista.addEmpleados(hola);
 
-        System.out.println(reunion.calcularTiempoReal() + " minutos transcurridos");
+        // Invitaciones
+        Invitacion i = new Invitacion();
+        i.invitar(depaComunista);
+        i.datosInvitacion();
 
+
+
+        reunion.finalizar(LocalDateTime.of(2024, 5, 8, 11, 0));
     }
 }
