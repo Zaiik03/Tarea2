@@ -7,22 +7,7 @@ Hecho:
 * Implementar sistema asistencias. Cada empleado o departamento invitado puede confirmar la asistencia, dando una hora de llegada(con esa hora se calcula si hubo retraso)
 
 Por hacer:
-* Implementar informe.
 * Hacer JavaDoc
 * Tests Unitarios JUnit
-* Enum (implementar el tipo de reunion en el constructor de reunion)
+* UML
 
-
-
-
-Idea Informe:
-
-"Informe reunion (fecha)"
-"Organizado por: (organizador)"
-"Hora inicio: (hora inicio)"
-"Hora fin: (hora fin)"
-"Duracion total: (duracion total)"
-"Tipo reunion: (bla)"
-"Ubicacion: (Enlace o sala)"
-"Lista de participantes: (Participantes)"
-"Notas: (getNotas)"
