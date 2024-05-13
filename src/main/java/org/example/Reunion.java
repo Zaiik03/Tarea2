@@ -1,5 +1,7 @@
 package org.example;
 
+import java.io.File;
+import java.io.PrintWriter;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -21,11 +23,13 @@ abstract public class Reunion {
     public LocalDateTime horaFin;
 
     public Empleado organizador;
-    public static Nota nota;
+    public ArrayList<Nota> notas;
     public ArrayList<Invitacion> invitaciones;
     public ArrayList<Presente> presentes;
     public ArrayList<Retraso> retrasos;
     public ArrayList<Ausente> ausentes;
+
+    private String tipo_reunion;
     /**
      * Constructor Reunion
      *
@@ -34,15 +38,16 @@ abstract public class Reunion {
      * @param duracionPrevista duracion de la reunion
      * @param ubicacion        la sala o enlace
      */
-    Reunion(LocalDate fecha, LocalDateTime horaPrevista, Duration duracionPrevista, String ubicacion, Empleado organizador) {
+    Reunion(LocalDate fecha, LocalDateTime horaPrevista, Duration duracionPrevista, String ubicacion, Empleado organizador, String tipodereunion) {
         /* Asignación de propiedades */
         this.fecha = fecha;
         this.horaPrevista = horaPrevista;
         this.duracionPrevista = duracionPrevista;
         this.ubicacion = ubicacion;
         this.organizador = organizador;
+        this.tipo_reunion = tipodereunion;
 
-        nota = new Nota();
+        notas = new ArrayList<>();
         invitaciones = new ArrayList<>();
         presentes = new ArrayList<>();
         retrasos = new ArrayList<>();
@@ -57,6 +62,7 @@ abstract public class Reunion {
     public void finalizar(LocalDateTime horaFinReal) {
         horaFin = horaFinReal;
 
+        // Lita de ausentes
         for(Invitacion i : invitaciones){
             int p_si = 1;
             int r_si = 1;
@@ -75,6 +81,10 @@ abstract public class Reunion {
                 ausentes.add(new Ausente(i.empleado));
             }
         }
+
+        // Informe
+        crearInforme();
+
     }
 
     public float calcularTiempoReal() {
@@ -83,28 +93,63 @@ abstract public class Reunion {
         return (float) duracion.toMinutes();
     }
 
-    public void listaInvitaciones(){
-        for(Invitacion i : invitaciones){
-            System.out.println(i.empleado.getId() + ", " + i.hora);
-        }
+    public ArrayList listaInvitaciones(){
+        return invitaciones;
     }
 
-    public void obtenerAsistencias(){
-        for(Presente persona : presentes){
-            System.out.println("Persona puntual: " + persona.getIdInvitado());
-        }
+    public ArrayList obtenerAsistencias(){
+        return presentes;
     }
 
-    public void obtenerRetrasos(){
-        for(Retraso persona : retrasos){
-            System.out.println("Persona atrasada: " + persona.getIdInvitado() + " - " + persona.getHoraLlegada());
-        }
+    public ArrayList obtenerRetrasos(){
+        return retrasos;
     }
 
-    public void obtenerAusentes(){
-        for(Ausente persona : ausentes){
-            System.out.println("Persona ausente: " + persona.getIdInvitado());
-        }
+    public ArrayList obtenerAusentes(){
+        return ausentes;
     }
 
+    public void crearInforme(){
+        // Datos del archivo
+        String nombrearchivo = "src/main/java/org/example\\Informe.txt";
+
+        // Archivo informe
+        File archivo = new File(nombrearchivo);
+
+        // Try del archivo
+        try {
+            PrintWriter escritor = new PrintWriter(archivo);
+            escritor.println("Informe Reunión " + fecha + "\nOrganizado por: " + organizador);
+            escritor.println("Hora de la reunion: " + horaPrevista);
+            escritor.println("Hora finalización: " + horaFin);
+            escritor.println("Duracion total: " + calcularTiempoReal() + " minutos");
+            escritor.println("Tipo de reunión: " + tipo_reunion);
+            escritor.println("Ubicación: " + ubicacion);
+
+            escritor.println("-------- Lista de presentes ---------");
+            for (Presente e : presentes) {
+                System.out.println(e.usuario.toString());
+            }
+
+            escritor.println("-------- Lista de Atrasados ---------" );
+            for(Retraso r : retrasos){
+                System.out.println(r.usuario.toString());
+            }
+
+            escritor.println("-------- Lista de Ausentes ---------" );
+            for(Ausente a : ausentes){
+                System.out.println(a.usuario.toString());
+            }
+
+            escritor.println("-------- Notas ---------");
+            for(Nota n : notas){
+                escritor.println(n.getNota());
+            }
+
+            escritor.close();
+        } catch (Exception e){
+            System.err.println("Error: " + e);
+        }
+
+    }
 }

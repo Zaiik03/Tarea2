@@ -1,9 +1,11 @@
 package org.example;
 
+import java.io.*;
 import java.time.Duration;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.zip.DeflaterOutputStream;
 
 
 public class Main {
@@ -25,7 +27,7 @@ public class Main {
         dep2.addEmpleados(emp4);
 
         // Creación de la reunión
-        ReunionPresencial reunion = new ReunionPresencial(LocalDate.of(2024, 5, 7), LocalDateTime.of(2024, 5, 7, 10, 0), Duration.ofMinutes(120), "A411", emp1);
+        ReunionPresencial reunion = new ReunionPresencial(LocalDate.of(2024, 5, 7), LocalDateTime.of(2024, 5, 7, 10, 0), Duration.ofMinutes(120), "A411", emp1, TipoReunion.MARKETING.getString());
 
         // Invitaciones a usuarios y departamentos
         emp2.invitar(reunion);
@@ -39,17 +41,18 @@ public class Main {
         emp2.confirmarAsistencia(LocalDateTime.of(2024,5,7,11,0), reunion);
         emp3.confirmarAsistencia(LocalDateTime.of(2024,5,7,9,40), reunion);
 
+        //Notas
+        reunion.notas.add(new Nota("hola gente"));
+        reunion.notas.add(new Nota("nota nota nta"));
 
         // test
-        reunion.listaInvitaciones();
-        System.out.println("\n");
-        reunion.obtenerAsistencias();
-        System.out.println("\n");
-        reunion.obtenerRetrasos();
-        System.out.println("\n");
+        ArrayList<Empleado> invitaciones = reunion.listaInvitaciones();
+        ArrayList<Empleado> presentes = reunion.obtenerAsistencias();
+        ArrayList<Empleado> retrasos = reunion.obtenerRetrasos();
+        ArrayList<Empleado> ausentes = reunion.obtenerAusentes();
 
         // Finalizacion de la reunión
-        reunion.finalizar(LocalDateTime.of(2024, 5, 8, 11, 0));
+        reunion.finalizar(LocalDateTime.of(2024, 5, 7, 11, 0));
 
         // Lista Ausentes
         reunion.obtenerAusentes();

@@ -22,7 +22,7 @@ public class Empleado implements Invitable {
 
     @Override
     public String toString() {
-        return new String(id + ", " + nombre + " " + apellido + ", " + correo);
+        return new String(nombre + " " + apellido + " - " + correo + " - " + id);
     }
 
     @Override

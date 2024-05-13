@@ -2,21 +2,13 @@ package org.example;
 import java.util.ArrayList;
 
 public class Nota {
-    private ArrayList<String> notas_reunion;
+    private String notas_reunion;
 
-    public Nota(){
-        notas_reunion = new ArrayList<String>();
+    public Nota(String nota){
+        notas_reunion = nota;
     }
 
-    public void getNota(){
-        int i = 1;
-        for(String nota : notas_reunion){
-            System.out.println("Nota " + i + ": " + nota);
-            i++;
-        }
-    }
-
-    public void addNota(String nota){
-        notas_reunion.add(nota);
+    public String getNota(){
+        return notas_reunion;
     }
 }
