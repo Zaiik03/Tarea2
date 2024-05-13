@@ -126,24 +126,39 @@ abstract public class Reunion {
             escritor.println("Tipo de reunión: " + tipo_reunion);
             escritor.println("Ubicación: " + ubicacion);
 
-            escritor.println("-------- Lista de presentes ---------");
+            escritor.println("\n");
+            escritor.println("-------- Lista de presentes ---------\n");
+            int i = 1;
             for (Presente e : presentes) {
-                System.out.println(e.usuario.toString());
+                escritor.println(i + "._ " + e.usuario.toString());
+                i++;
             }
+            i = 1 ;
+            escritor.println("\n");
 
-            escritor.println("-------- Lista de Atrasados ---------" );
+            escritor.println("-------- Lista de Atrasados ---------\n" );
+
             for(Retraso r : retrasos){
-                System.out.println(r.usuario.toString());
+                escritor.println(i + "._ " + r.usuario.toString());
+                i++;
             }
 
-            escritor.println("-------- Lista de Ausentes ---------" );
+            i = 1;
+            escritor.println("\n");
+
+            escritor.println("-------- Lista de Ausentes ---------\n" );
             for(Ausente a : ausentes){
-                System.out.println(a.usuario.toString());
+                escritor.println(i + "._ " + a.usuario.toString());
+                i++;
             }
 
-            escritor.println("-------- Notas ---------");
+            i = 1;
+            escritor.println("\n");
+
+            escritor.println("-------- Notas ---------'\n");
             for(Nota n : notas){
-                escritor.println(n.getNota());
+                escritor.println(i + "._ " + n.getNota());
+                i++;
             }
 
             escritor.close();

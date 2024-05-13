@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 public class ReunionPresencial extends Reunion{
-    public ReunionPresencial(LocalDate fecha, LocalDateTime horaPrevista, Duration duracionPrevista, String ubicacion, Empleado organizador){
-        super(fecha, horaPrevista, duracionPrevista, ubicacion, organizador);
+    public ReunionPresencial(LocalDate fecha, LocalDateTime horaPrevista, Duration duracionPrevista, String ubicacion, Empleado organizador, String tipodereunion){
+        super(fecha, horaPrevista, duracionPrevista, ubicacion, organizador, tipodereunion);
     }
 }

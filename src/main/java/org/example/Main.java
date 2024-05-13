@@ -30,6 +30,7 @@ public class Main {
         ReunionPresencial reunion = new ReunionPresencial(LocalDate.of(2024, 5, 7), LocalDateTime.of(2024, 5, 7, 10, 0), Duration.ofMinutes(120), "A411", emp1, TipoReunion.MARKETING.getString());
 
         // Invitaciones a usuarios y departamentos
+        emp1.invitar(reunion);
         emp2.invitar(reunion);
         dep2.invitar(reunion);
 
