@@ -1,6 +1,7 @@
 package org.example;
 import java.lang.reflect.Array;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Departamento implements Invitable{
@@ -45,7 +46,7 @@ public class Departamento implements Invitable{
     @Override
     public void invitar(Reunion reunion) {
         for(Empleado e : empleados){
-            reunion.invitaciones.add(new Invitacion(Instant.now(), e.getId()));
+            reunion.invitaciones.add(new Invitacion(LocalDateTime.now(), e));
         }
     }
 }

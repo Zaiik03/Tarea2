@@ -6,15 +6,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Invitacion{
-    private Instant hora;
-    public String id_destinatario;
+    public LocalDateTime hora;
+    public Empleado empleado;
 
-    public Invitacion(Instant hora, String id_destinatario){
-        this.hora = Instant.now();
-        this.id_destinatario = id_destinatario;
-    }
-
-    public void datosInvitacion(){
-
+    public Invitacion(LocalDateTime hora, Empleado empleado){
+        this.hora = LocalDateTime.now();
+        this.empleado = empleado;
     }
 }

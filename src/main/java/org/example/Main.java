@@ -24,20 +24,34 @@ public class Main {
         dep2.addEmpleados(emp3);
         dep2.addEmpleados(emp4);
 
-        System.out.println("Datos dep1: ");
-        dep1.datosEmpleados();
-        System.out.println("Datos dep2: ");
-        dep2.datosEmpleados();
+        // Creación de la reunión
+        ReunionPresencial reunion = new ReunionPresencial(LocalDate.of(2024, 5, 7), LocalDateTime.of(2024, 5, 7, 10, 0), Duration.ofMinutes(120), "A411", emp1);
 
-
-
-        ReunionPresencial reunion = new ReunionPresencial(LocalDate.of(2024, 5, 7), Instant.now(), Duration.ofHours(1).plusMinutes(30), "A411", emp1);
+        // Invitaciones a usuarios y departamentos
         emp2.invitar(reunion);
         dep2.invitar(reunion);
 
+        // Iniciar reunión
         reunion.iniciar(LocalDateTime.of(2024, 5, 7, 10, 0));
-        emp2.confirmarAsistencia(Instant.now(), reunion);
 
+        // Confirmacion Asistencia
+        emp1.confirmarAsistencia(LocalDateTime.of(2024,5,7,10,0), reunion);
+        emp2.confirmarAsistencia(LocalDateTime.of(2024,5,7,11,0), reunion);
+        emp3.confirmarAsistencia(LocalDateTime.of(2024,5,7,9,40), reunion);
+
+
+        // test
+        reunion.listaInvitaciones();
+        System.out.println("\n");
+        reunion.obtenerAsistencias();
+        System.out.println("\n");
+        reunion.obtenerRetrasos();
+        System.out.println("\n");
+
+        // Finalizacion de la reunión
         reunion.finalizar(LocalDateTime.of(2024, 5, 8, 11, 0));
+
+        // Lista Ausentes
+        reunion.obtenerAusentes();
     }
 }

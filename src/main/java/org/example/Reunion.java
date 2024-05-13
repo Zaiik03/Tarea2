@@ -13,18 +13,19 @@ import java.util.ArrayList;
 
 abstract public class Reunion {
     private LocalDate fecha;
-    private Instant horaPrevista; // de inicio estimada? hora de fin estimada?)
-    private Duration duracionPrevista;
+    public LocalDateTime horaPrevista; // de inicio estimada? hora de fin estimada?)
+    public Duration duracionPrevista;
     private String ubicacion;
     /* Por ahora se asumirá que horaInicio y horaFin sólo se modificarán cuando se ocupen los métodos iniciar y finalizar, respectivamente */
-    private LocalDateTime horaInicio;
-    private LocalDateTime horaFin;
+    public LocalDateTime horaInicio;
+    public LocalDateTime horaFin;
 
-    Empleado organizador;
+    public Empleado organizador;
     public static Nota nota;
     public ArrayList<Invitacion> invitaciones;
-    public ArrayList<Asistencia> asistencias;
+    public ArrayList<Presente> presentes;
     public ArrayList<Retraso> retrasos;
+    public ArrayList<Ausente> ausentes;
     /**
      * Constructor Reunion
      *
@@ -33,7 +34,7 @@ abstract public class Reunion {
      * @param duracionPrevista duracion de la reunion
      * @param ubicacion        la sala o enlace
      */
-    Reunion(LocalDate fecha, Instant horaPrevista, Duration duracionPrevista, String ubicacion, Empleado organizador) {
+    Reunion(LocalDate fecha, LocalDateTime horaPrevista, Duration duracionPrevista, String ubicacion, Empleado organizador) {
         /* Asignación de propiedades */
         this.fecha = fecha;
         this.horaPrevista = horaPrevista;
@@ -43,8 +44,9 @@ abstract public class Reunion {
 
         nota = new Nota();
         invitaciones = new ArrayList<>();
-        asistencias = new ArrayList<>();
+        presentes = new ArrayList<>();
         retrasos = new ArrayList<>();
+        ausentes = new ArrayList<>();
 
     }
 
@@ -54,6 +56,25 @@ abstract public class Reunion {
 
     public void finalizar(LocalDateTime horaFinReal) {
         horaFin = horaFinReal;
+
+        for(Invitacion i : invitaciones){
+            int p_si = 1;
+            int r_si = 1;
+            for(Presente p : presentes){
+                if(i.empleado.equals(p.usuario)){
+                    p_si = 0;
+                }
+            }
+
+            for(Retraso r : retrasos){
+                if(i.empleado.equals(r.usuario) ){
+                    r_si = 0;
+                }
+            }
+            if(r_si == 1 && p_si == 1){
+                ausentes.add(new Ausente(i.empleado));
+            }
+        }
     }
 
     public float calcularTiempoReal() {
@@ -62,9 +83,28 @@ abstract public class Reunion {
         return (float) duracion.toMinutes();
     }
 
-    public LocalDateTime getHoraInicio(){
-        return horaInicio;
+    public void listaInvitaciones(){
+        for(Invitacion i : invitaciones){
+            System.out.println(i.empleado.getId() + ", " + i.hora);
+        }
     }
 
+    public void obtenerAsistencias(){
+        for(Presente persona : presentes){
+            System.out.println("Persona puntual: " + persona.getIdInvitado());
+        }
+    }
+
+    public void obtenerRetrasos(){
+        for(Retraso persona : retrasos){
+            System.out.println("Persona atrasada: " + persona.getIdInvitado() + " - " + persona.getHoraLlegada());
+        }
+    }
+
+    public void obtenerAusentes(){
+        for(Ausente persona : ausentes){
+            System.out.println("Persona ausente: " + persona.getIdInvitado());
+        }
+    }
 
 }

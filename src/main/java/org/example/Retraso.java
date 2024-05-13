@@ -4,8 +4,18 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 
 public class Retraso extends Asistencia{
-    private LocalDateTime hora;
-    public Retraso(LocalDateTime hora){
-        this.hora = hora;
+    private LocalDateTime horaLlegada;
+    public Retraso(Empleado e, LocalDateTime horaLlegada){
+        super(e);
+        this.horaLlegada = horaLlegada;
     }
+
+    public String getIdInvitado(){
+        return super.usuario.toString();
+    }
+
+    public LocalDateTime getHoraLlegada(){
+        return this.horaLlegada;
+    }
+
 }
