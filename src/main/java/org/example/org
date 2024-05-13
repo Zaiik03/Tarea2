@@ -5,6 +5,8 @@ Hecho:
 * Implementar invitar() en Departamento y Empleado // HECHO
 * Sistema de asistencia/ausencia/retraso a reuniones
 * Implementar sistema asistencias. Cada empleado o departamento invitado puede confirmar la asistencia, dando una hora de llegada(con esa hora se calcula si hubo retraso)
+* Informe
+* Enum
 
 Por hacer:
 * Hacer JavaDoc
