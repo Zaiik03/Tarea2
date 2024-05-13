@@ -19,10 +19,12 @@ abstract public class Reunion {
     /* Por ahora se asumirá que horaInicio y horaFin sólo se modificarán cuando se ocupen los métodos iniciar y finalizar, respectivamente */
     private LocalDateTime horaInicio;
     private LocalDateTime horaFin;
-    private Asistencia asistencia;
 
+    Empleado organizador;
     public static Nota nota;
-
+    public ArrayList<Invitacion> invitaciones;
+    public ArrayList<Asistencia> asistencias;
+    public ArrayList<Retraso> retrasos;
     /**
      * Constructor Reunion
      *
@@ -31,14 +33,18 @@ abstract public class Reunion {
      * @param duracionPrevista duracion de la reunion
      * @param ubicacion        la sala o enlace
      */
-    Reunion(LocalDate fecha, Instant horaPrevista, Duration duracionPrevista, String ubicacion) {
+    Reunion(LocalDate fecha, Instant horaPrevista, Duration duracionPrevista, String ubicacion, Empleado organizador) {
         /* Asignación de propiedades */
         this.fecha = fecha;
         this.horaPrevista = horaPrevista;
         this.duracionPrevista = duracionPrevista;
         this.ubicacion = ubicacion;
+        this.organizador = organizador;
+
         nota = new Nota();
-        asistencia = new Asistencia();
+        invitaciones = new ArrayList<>();
+        asistencias = new ArrayList<>();
+        retrasos = new ArrayList<>();
 
     }
 
@@ -56,6 +62,9 @@ abstract public class Reunion {
         return (float) duracion.toMinutes();
     }
 
+    public LocalDateTime getHoraInicio(){
+        return horaInicio;
+    }
 
 
 }

@@ -1,6 +1,9 @@
 package org.example;
 
-public class Empleado {
+import java.time.Instant;
+import java.time.LocalDateTime;
+
+public class Empleado implements Invitable {
     private String id;
     private String apellido;
     private String nombre;
@@ -19,6 +22,22 @@ public class Empleado {
 
     @Override
     public String toString() {
-        return new String(id + " ," + nombre + " " + apellido + " ," + correo);
+        return new String(id + ", " + nombre + " " + apellido + ", " + correo);
+    }
+
+    @Override
+    public void invitar(Reunion reunion) {
+        // Se agrega la invitación a la lista de invitaciones de la reunion
+        reunion.invitaciones.add(new Invitacion(Instant.now(), this.id));
+
+    }
+
+    public void confirmarAsistencia(LocalDateTime horaLlegada, Reunion reunion){
+        // Dependiendo de la hora de llegada, agregar empleado a lista de asistencias o retrasos
+        if(horaLlegada.isAfter(reunion.getHoraInicio())){
+            reunion.retrasos.add(new Retraso(horaLlegada));
+        } else{
+            reunion.asistencias.add(new Asistencia());
+        }
     }
 }

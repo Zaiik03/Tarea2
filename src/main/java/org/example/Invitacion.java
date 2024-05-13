@@ -1,28 +1,20 @@
 package org.example;
 
 import java.lang.reflect.Array;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Invitacion implements Invitable{
+public class Invitacion{
+    private Instant hora;
+    public String id_destinatario;
 
-    private LocalDateTime hora;
-    private ArrayList<Empleado> invitados;
-
-    public Invitacion(){
-        invitados = new ArrayList<Empleado>();
-    }
-
-    @Override
-    public void invitar(Departamento d) {
-        for(int i = 0; i < d.obtenerCantidadEmpleados(); i++){
-            invitados.add(d.getEmpleado());
-        }
+    public Invitacion(Instant hora, String id_destinatario){
+        this.hora = Instant.now();
+        this.id_destinatario = id_destinatario;
     }
 
     public void datosInvitacion(){
-        for(Empleado e : invitados){
-            System.out.println(e);
-        }
+
     }
 }

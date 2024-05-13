@@ -1,6 +1,12 @@
 Hecho:
-* Reuniones
 * Añadir notas durante reunion
 * Invitar departamento a reunion
 
 Por hacer:
+* Invitaciones funcionales
+* Sistema de asistencia/ausencia a reuniones
+* Implementar invitar() en Departamento y Empleado
+* Correcion invitar(): El hecho de que Empleado y Departamento implementen Invitable, no significa que puedan realizar la accion de invitar, sino que ambos pueden ser invitados.
+                       Es decir, cuando se use el método invitar de uno de los dos, deben ser agregados a la lista de invitacion.
+* Implementar sistema asistencias. Cada empleado o departamento invitado puede confirmar la asistencia, dando una hora de llegada(con esa hora se calcula si hubo retraso)
+*
