@@ -1,8 +1,8 @@
 Informe Reunión 2024-05-07
 Organizado por: Oliver1 Penailillo1 - hola1@123.cl - 1
 Hora de la reunion: 2024-05-07T10:00
-Hora finalización: 2024-05-07T11:00
-Duracion total: 60.0 minutos
+Hora finalización: 2024-05-07T11:30
+Duracion total: 90.0 minutos
 Tipo de reunión: Marketing
 Ubicación: A411
 
@@ -25,5 +25,5 @@ Ubicación: A411
 
 -------- Notas ---------'
 
-1._ hola gente
-2._ nota nota nta
+1._ Primera nota
+2._ Segunda nota

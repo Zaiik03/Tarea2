@@ -55,14 +55,12 @@ abstract public class Reunion {
 
     }
 
-    public void iniciar(LocalDateTime horaInicioReal) {
-        horaInicio = horaInicioReal;
-    }
+    public void iniciar(LocalDateTime horaInicioReal) { horaInicio = horaInicioReal; }
 
     public void finalizar(LocalDateTime horaFinReal) {
         horaFin = horaFinReal;
 
-        // Lita de ausentes
+        // Lita de ausentes: Por cada empleado invitado se comprueba que no esté ni en la lista de presentes ni de retrasos
         for(Invitacion i : invitaciones){
             int p_si = 1;
             int r_si = 1;
@@ -111,7 +109,8 @@ abstract public class Reunion {
 
     public void crearInforme(){
         // Datos del archivo
-        String nombrearchivo = "src/main/java/org/example\\Informe.txt";
+        // String nombrearchivo = "src/main/java/org/example\\Informe.txt";
+        String nombrearchivo = "src/main/java/org/example/Informe.txt";
 
         // Archivo informe
         File archivo = new File(nombrearchivo);

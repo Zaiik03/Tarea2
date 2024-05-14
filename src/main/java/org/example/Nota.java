@@ -2,13 +2,13 @@ package org.example;
 import java.util.ArrayList;
 
 public class Nota {
-    private String notas_reunion;
+    private String texto_nota;
 
     public Nota(String nota){
-        notas_reunion = nota;
+        texto_nota = nota;
     }
 
     public String getNota(){
-        return notas_reunion;
+        return texto_nota;
     }
 }

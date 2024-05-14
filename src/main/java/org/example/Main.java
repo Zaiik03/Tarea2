@@ -43,17 +43,17 @@ public class Main {
         emp3.confirmarAsistencia(LocalDateTime.of(2024,5,7,9,40), reunion);
 
         //Notas
-        reunion.notas.add(new Nota("hola gente"));
-        reunion.notas.add(new Nota("nota nota nta"));
+        reunion.notas.add(new Nota("Primera nota"));
+        reunion.notas.add(new Nota("Segunda nota"));
 
         // test
-        ArrayList<Empleado> invitaciones = reunion.listaInvitaciones();
-        ArrayList<Empleado> presentes = reunion.obtenerAsistencias();
-        ArrayList<Empleado> retrasos = reunion.obtenerRetrasos();
-        ArrayList<Empleado> ausentes = reunion.obtenerAusentes();
+        ArrayList<Invitacion> invitaciones = reunion.listaInvitaciones();
+        ArrayList<Presente> presentes = reunion.obtenerAsistencias();
+        ArrayList<Retraso> retrasos = reunion.obtenerRetrasos();
+        ArrayList<Ausente> ausentes = reunion.obtenerAusentes();
 
         // Finalizacion de la reunión
-        reunion.finalizar(LocalDateTime.of(2024, 5, 7, 11, 0));
+        reunion.finalizar(LocalDateTime.of(2024, 5, 7, 11, 30));
 
         // Lista Ausentes
         reunion.obtenerAusentes();
