@@ -59,10 +59,8 @@ public class Departamento implements Invitable{
     /**
      * Metodo para mostrar los datos de los empleados pertenecientes al departamento
      */
-    public void datosEmpleados(){
-        for(Empleado e : empleados){
-            System.out.println(e);
-        }
+    public ArrayList datosEmpleados(){
+        return empleados;
     }
 
     /**
