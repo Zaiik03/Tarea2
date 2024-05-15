@@ -56,7 +56,6 @@ class DepartamentoTest {
         dep.addEmpleados(emp1);
         dep.addEmpleados(emp1);
         dep.addEmpleados(emp2);
-        ArrayList<Empleado> arr_real = dep.datosEmpleados();
         for(Empleado a : arr_esperado){
             Empleado b = dep.getEmpleado();
             if(a.getId().equals(b.getId())){
