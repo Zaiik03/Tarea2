@@ -23,7 +23,7 @@ Ubicación: A411
 1._ Oliver4 Penailillo4 - hola4@123.cl - 4
 
 
--------- Notas ---------'
+-------- Notas ---------
 
 1._ Primera nota
 2._ Segunda nota

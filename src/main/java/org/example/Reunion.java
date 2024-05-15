@@ -14,22 +14,59 @@ import java.util.ArrayList;
 
 
 abstract public class Reunion {
+    /**
+     * Variable para almacenar la fecha
+     */
     private LocalDate fecha;
-    public LocalDateTime horaPrevista; // de inicio estimada? hora de fin estimada?)
+    /**
+     * Variable para almacenar la hora de inicio prevista
+     */
+    public LocalDateTime horaPrevista;
+    /**
+     * Variable para almacenar la duracion prevista
+     */
     public Duration duracionPrevista;
+    /**
+     * Variable para almacenar la ubicación
+     */
     private String ubicacion;
-    /* Por ahora se asumirá que horaInicio y horaFin sólo se modificarán cuando se ocupen los métodos iniciar y finalizar, respectivamente */
+    /**
+     * Variable para almacenar la hora de inicio
+     */
     public LocalDateTime horaInicio;
+    /**
+     * Variable para almacenar la hora de finalización
+     */
     public LocalDateTime horaFin;
-
+    /**
+     * Clase Empleado para almacenar al organizador
+     */
     public Empleado organizador;
+    /**
+     * ArrayList de Notas para almacenar las notas durante la reunión
+     */
     public ArrayList<Nota> notas;
+    /**
+     * ArrayList de Invitaciones para almacenar los invitados
+     */
     public ArrayList<Invitacion> invitaciones;
+    /**
+     * ArrayList de invitados presentes
+     */
     public ArrayList<Presente> presentes;
+    /**
+     * ArrayList de invitados quellegaron Atrasados
+     */
     public ArrayList<Retraso> retrasos;
+    /**
+     * ArrayList de invitados ausentes
+     */
     public ArrayList<Ausente> ausentes;
-
+    /**
+     * Variable que almacenará el tipo de reunión
+     */
     private String tipo_reunion;
+
     /**
      * Constructor Reunion
      *
@@ -39,7 +76,6 @@ abstract public class Reunion {
      * @param ubicacion        la sala o enlace
      */
     Reunion(LocalDate fecha, LocalDateTime horaPrevista, Duration duracionPrevista, String ubicacion, Empleado organizador, String tipodereunion) {
-        /* Asignación de propiedades */
         this.fecha = fecha;
         this.horaPrevista = horaPrevista;
         this.duracionPrevista = duracionPrevista;
@@ -55,12 +91,19 @@ abstract public class Reunion {
 
     }
 
+    /**
+     * Método que da inicio a la reunion
+     * @param horaInicioReal Hora de inicio de la reunion
+     */
     public void iniciar(LocalDateTime horaInicioReal) { horaInicio = horaInicioReal; }
 
+    /**
+     * Método que da fin a la reunion
+     * @param horaFinReal Hora de fin de la reunion
+     */
     public void finalizar(LocalDateTime horaFinReal) {
         horaFin = horaFinReal;
 
-        // Lita de ausentes: Por cada empleado invitado se comprueba que no esté ni en la lista de presentes ni de retrasos
         for(Invitacion i : invitaciones){
             int p_si = 1;
             int r_si = 1;
@@ -80,42 +123,57 @@ abstract public class Reunion {
             }
         }
 
-        // Informe
         crearInforme();
 
     }
 
+    /**
+     * Método para calcular la duracion de la reunion
+     * @return Retorna un float que representa la duracion de la reunion en minutos
+     */
     public float calcularTiempoReal() {
         // Se devuelve el tiempo que duró la reunión
         Duration duracion = Duration.between(horaInicio, horaFin);
         return (float) duracion.toMinutes();
     }
 
+    /**
+     * Metodo para mostrar los invitados
+     * @return Retorna un ArrayList con los invitados
+     */
     public ArrayList listaInvitaciones(){
         return invitaciones;
     }
 
+    /**
+     * Metodo para obtener las Asistencias
+     * @return Retorna un ArrayList por los presentes
+     */
     public ArrayList obtenerAsistencias(){
         return presentes;
     }
-
+    /**
+     * Método para obtener la lista de atrasos
+     * @return Retorna un ArrayList con los atrasos
+     */
     public ArrayList obtenerRetrasos(){
         return retrasos;
     }
-
+    /**
+     * Metodo para obtener la lista de los ausentes
+     * @return Retorna un ArrayList con los invitados ausentes
+     */
     public ArrayList obtenerAusentes(){
         return ausentes;
     }
-
+    /**
+     * Metodo que crea el Informe que será almacenado en un archivo TXT al final de la reunión
+     */
     public void crearInforme(){
-        // Datos del archivo
-        // String nombrearchivo = "src/main/java/org/example\\Informe.txt";
         String nombrearchivo = "src/main/java/org/example/Informe.txt";
 
-        // Archivo informe
         File archivo = new File(nombrearchivo);
 
-        // Try del archivo
         try {
             PrintWriter escritor = new PrintWriter(archivo);
             escritor.println("Informe Reunión " + fecha + "\nOrganizado por: " + organizador);
@@ -154,7 +212,7 @@ abstract public class Reunion {
             i = 1;
             escritor.println("\n");
 
-            escritor.println("-------- Notas ---------'\n");
+            escritor.println("-------- Notas ---------\n");
             for(Nota n : notas){
                 escritor.println(i + "._ " + n.getNota());
                 i++;
