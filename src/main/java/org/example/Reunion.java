@@ -107,6 +107,8 @@ abstract public class Reunion {
         for(Invitacion i : invitaciones){
             int p_si = 1;
             int r_si = 1;
+            int a_si = 1;
+
             for(Presente p : presentes){
                 if(i.empleado.equals(p.usuario)){
                     p_si = 0;
@@ -118,7 +120,13 @@ abstract public class Reunion {
                     r_si = 0;
                 }
             }
-            if(r_si == 1 && p_si == 1){
+
+            for(Ausente a : ausentes){
+                if(i.empleado.equals(a.usuario) ){
+                    a_si = 0;
+                }
+            }
+            if(r_si == 1 && p_si == 1 && a_si == 1){
                 ausentes.add(new Ausente(i.empleado));
             }
         }
@@ -141,7 +149,7 @@ abstract public class Reunion {
      * Metodo para mostrar los invitados
      * @return Retorna un ArrayList con los invitados
      */
-    public ArrayList listaInvitaciones(){
+    public ArrayList<Invitacion> listaInvitaciones(){
         return invitaciones;
     }
 
@@ -149,21 +157,21 @@ abstract public class Reunion {
      * Metodo para obtener las Asistencias
      * @return Retorna un ArrayList por los presentes
      */
-    public ArrayList obtenerAsistencias(){
+    public ArrayList<Presente> obtenerAsistencias(){
         return presentes;
     }
     /**
      * Método para obtener la lista de atrasos
      * @return Retorna un ArrayList con los atrasos
      */
-    public ArrayList obtenerRetrasos(){
+    public ArrayList<Retraso> obtenerRetrasos(){
         return retrasos;
     }
     /**
      * Metodo para obtener la lista de los ausentes
      * @return Retorna un ArrayList con los invitados ausentes
      */
-    public ArrayList obtenerAusentes(){
+    public ArrayList<Ausente> obtenerAusentes(){
         return ausentes;
     }
     /**

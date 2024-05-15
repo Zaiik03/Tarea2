@@ -76,11 +76,12 @@ public class Departamento implements Invitable{
     /**
      * Metodo para invitar un departamento a una reunión
      * @param reunion Es la reunion a la que asistirán
+     * @param horita Hora a la que se invito
      */
     @Override
-    public void invitar(Reunion reunion) {
+    public void invitar(Reunion reunion, LocalDateTime horita) {
         for(Empleado e : empleados){
-            reunion.invitaciones.add(new Invitacion(LocalDateTime.now(), e));
+            reunion.invitaciones.add(new Invitacion(horita, e));
         }
     }
 }

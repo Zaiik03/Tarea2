@@ -23,7 +23,7 @@ public class Invitacion{
      * @param empleado Empleado invitado
      */
     public Invitacion(LocalDateTime hora, Empleado empleado){
-        this.hora = LocalDateTime.now();
+        this.hora = hora;
         this.empleado = empleado;
     }
 }

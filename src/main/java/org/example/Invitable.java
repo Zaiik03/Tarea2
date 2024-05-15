@@ -1,12 +1,15 @@
 package org.example;
 
+import java.time.LocalDateTime;
+
 /**
  * Interfaz Invitable
  */
 public interface Invitable {
     /**
-     * Metodo para invitar empleados
-     * @param reunion Es la reunion a la que asistirán
+     * Método para invitar Empleado
+     * @param reunion reunion
+     * @param horita hora
      */
-    void invitar(Reunion reunion);
+    void invitar(Reunion reunion, LocalDateTime horita);
 }

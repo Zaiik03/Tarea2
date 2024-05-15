@@ -1,6 +1,6 @@
 package org.example;
 
-import java.time.Instant;
+
 import java.time.LocalDateTime;
 
 /**
@@ -59,30 +59,31 @@ public class Empleado implements Invitable {
     /**
      * Método para invitar a un empleado a una reunion
      * @param reunion Es la reunion a la que asistirán
+     * @param horita Hora a la que se invito
      */
     @Override
-    public void invitar(Reunion reunion) {
+    public void invitar(Reunion reunion, LocalDateTime horita) {
         // Se agrega la invitación a la lista de invitaciones de la reunion
-        reunion.invitaciones.add(new Invitacion(LocalDateTime.now(), this));
+        reunion.invitaciones.add(new Invitacion(horita, this));
 
     }
 
     /**
      * Método para que un Empleado confirme su asistencia a la reunion
-     * @param horaLlegada es LocalDateTime
+     * @param horallegada es LocalDateTime
      * @param reunion es Reunion
      */
-    public void confirmarAsistencia(LocalDateTime horaLlegada, Reunion reunion) {
+    public void confirmarAsistencia(LocalDateTime horallegada, Reunion reunion) {
         for (Invitacion i : reunion.invitaciones) {
             if (this.equals(i.empleado)) {
                 LocalDateTime horainicio = reunion.horaPrevista;
                 LocalDateTime horafin = horainicio.plus(reunion.duracionPrevista);
 
 
-                if (horaLlegada.isBefore(reunion.horaInicio) || horaLlegada.isEqual(reunion.horaInicio)) {
+                if (horallegada.isBefore(reunion.horaInicio) || horallegada.isEqual(reunion.horaInicio)) {
                     reunion.presentes.add(new Presente(this));
-                } else if (horaLlegada.isAfter(reunion.horaInicio) && horaLlegada.isBefore(horafin)) {
-                    reunion.retrasos.add(new Retraso(this, horaLlegada));
+                } else if (horallegada.isAfter(reunion.horaInicio) && horallegada.isBefore(horafin)) {
+                    reunion.retrasos.add(new Retraso(this, horallegada));
                 } else {
                     reunion.ausentes.add(new Ausente(this));
                 }

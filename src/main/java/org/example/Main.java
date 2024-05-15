@@ -5,7 +5,6 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.zip.DeflaterOutputStream;
 
 
 public class Main {
@@ -30,9 +29,9 @@ public class Main {
         ReunionPresencial reunion = new ReunionPresencial(LocalDate.of(2024, 5, 7), LocalDateTime.of(2024, 5, 7, 10, 0), Duration.ofMinutes(120), "A411", emp1, TipoReunion.MARKETING.getString());
 
         // Invitaciones a usuarios y departamentos
-        emp1.invitar(reunion);
-        emp2.invitar(reunion);
-        dep2.invitar(reunion);
+        emp1.invitar(reunion, LocalDateTime.of(2024, 5, 7,10,0));
+        emp2.invitar(reunion, LocalDateTime.of(2024, 5, 7,10,0));
+        dep2.invitar(reunion, LocalDateTime.of(2024, 5, 7,10,0));
 
         // Iniciar reunión
         reunion.iniciar(LocalDateTime.of(2024, 5, 7, 10, 0));
@@ -41,6 +40,12 @@ public class Main {
         emp1.confirmarAsistencia(LocalDateTime.of(2024,5,7,10,0), reunion);
         emp2.confirmarAsistencia(LocalDateTime.of(2024,5,7,11,0), reunion);
         emp3.confirmarAsistencia(LocalDateTime.of(2024,5,7,9,40), reunion);
+
+        // Confirma fechas
+        for(Invitacion a : reunion.invitaciones){
+            System.out.println(a.hora);
+        }
+        System.out.println(reunion.horaInicio);
 
         //Notas
         reunion.notas.add(new Nota("Primera nota"));
