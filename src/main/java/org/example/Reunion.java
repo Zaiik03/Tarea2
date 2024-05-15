@@ -195,7 +195,7 @@ abstract public class Reunion {
             escritor.println("-------- Lista de presentes ---------\n");
             int i = 1;
             for (Presente e : presentes) {
-                escritor.println(i + "._ " + e.usuario.toString());
+                escritor.println(i + "._Rli" + e.usuario.toString());
                 i++;
             }
             i = 1 ;
